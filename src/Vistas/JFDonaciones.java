@@ -2,6 +2,7 @@ package Vistas;
 
 import BaseDeDatos.Conexion;
 import Controlador.Gestora;
+import Controlador.Ingeniero;
 import java.awt.Color;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -41,6 +42,12 @@ public class JFDonaciones extends javax.swing.JFrame implements Runnable {
         btnEliminar.setEnabled(false);
         btnModificar.setEnabled(false);
         cmbBTS.setEnabled(false);
+        lbNombreDo.setVisible(false);
+        lbApellidoDo.setVisible(false);
+        lbIdenDo.setVisible(false);
+        lbTPDo.setVisible(false);
+        btnConfimarDo.setEnabled(false);
+        txtCantidadS.setEnabled(false);
         setLocationRelativeTo(null);
         h1 = new Thread(this);
         h1.start();
@@ -113,15 +120,16 @@ public class JFDonaciones extends javax.swing.JFrame implements Runnable {
         jLabel22 = new javax.swing.JLabel();
         txtBIdentificDon = new javax.swing.JFormattedTextField();
         btnBuscar1 = new javax.swing.JButton();
-        jLabel23 = new javax.swing.JLabel();
-        jLabel24 = new javax.swing.JLabel();
-        jLabel25 = new javax.swing.JLabel();
-        jLabel26 = new javax.swing.JLabel();
+        lbNombreDo = new javax.swing.JLabel();
+        lbApellidoDo = new javax.swing.JLabel();
+        lbIdenDo = new javax.swing.JLabel();
+        lbTPDo = new javax.swing.JLabel();
         jSeparator1 = new javax.swing.JSeparator();
         jLabel27 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
+        txtCantidadS = new javax.swing.JTextField();
         jLabel28 = new javax.swing.JLabel();
-        jButton2 = new javax.swing.JButton();
+        btnConfimarDo = new javax.swing.JButton();
+        jLabel23 = new javax.swing.JLabel();
         lblHora = new javax.swing.JLabel();
 
         jMenu1.setText("File");
@@ -558,19 +566,26 @@ public class JFDonaciones extends javax.swing.JFrame implements Runnable {
             }
         });
 
-        jLabel23.setText("Nombre ");
+        lbNombreDo.setText("Nombre ");
 
-        jLabel24.setText("Apellido");
+        lbApellidoDo.setText("Apellido");
 
-        jLabel25.setText("Identificacion");
+        lbIdenDo.setText("Identificacion");
 
-        jLabel26.setText("TipoSangre");
+        lbTPDo.setText("TipoSangre");
 
         jLabel27.setText("Cantidad de Sangre a Donar: ");
 
         jLabel28.setText("Recuerde que para donar sangre tiene que ser mayor de edad y contar con un peso superior a los 50 kg");
 
-        jButton2.setText("Aceptar");
+        btnConfimarDo.setText("Confirmar");
+        btnConfimarDo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnConfimarDoActionPerformed(evt);
+            }
+        });
+
+        jLabel23.setText("ml");
 
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
         jPanel4.setLayout(jPanel4Layout);
@@ -583,30 +598,32 @@ public class JFDonaciones extends javax.swing.JFrame implements Runnable {
                         .addComponent(jLabel22))
                     .addGroup(jPanel4Layout.createSequentialGroup()
                         .addGap(26, 26, 26)
-                        .addComponent(jLabel23, javax.swing.GroupLayout.PREFERRED_SIZE, 68, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(lbNombreDo, javax.swing.GroupLayout.PREFERRED_SIZE, 68, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jLabel24)
+                    .addComponent(lbApellidoDo)
                     .addComponent(txtBIdentificDon, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(88, 88, 88)
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(btnBuscar1, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
-                        .addComponent(jLabel25)
+                        .addComponent(lbIdenDo)
                         .addGap(35, 35, 35)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 103, Short.MAX_VALUE)
-                .addComponent(jLabel26)
+                .addComponent(lbTPDo)
                 .addGap(44, 44, 44))
             .addComponent(jSeparator1)
             .addGroup(jPanel4Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(btnConfimarDo, javax.swing.GroupLayout.PREFERRED_SIZE, 101, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(jPanel4Layout.createSequentialGroup()
                         .addComponent(jLabel27)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(jLabel28)
-                    .addComponent(jButton2))
+                        .addComponent(txtCantidadS, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jLabel23))
+                    .addComponent(jLabel28))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel4Layout.setVerticalGroup(
@@ -619,10 +636,10 @@ public class JFDonaciones extends javax.swing.JFrame implements Runnable {
                     .addComponent(btnBuscar1))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel23)
-                    .addComponent(jLabel24)
-                    .addComponent(jLabel25)
-                    .addComponent(jLabel26))
+                    .addComponent(lbNombreDo)
+                    .addComponent(lbApellidoDo)
+                    .addComponent(lbIdenDo)
+                    .addComponent(lbTPDo))
                 .addGap(18, 18, 18)
                 .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
@@ -630,10 +647,11 @@ public class JFDonaciones extends javax.swing.JFrame implements Runnable {
                 .addGap(30, 30, 30)
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel27)
-                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtCantidadS, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel23))
                 .addGap(41, 41, 41)
-                .addComponent(jButton2)
-                .addContainerGap(230, Short.MAX_VALUE))
+                .addComponent(btnConfimarDo, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(217, Short.MAX_VALUE))
         );
 
         jTabbedPane5.addTab("Donar Sangre", jPanel4);
@@ -1035,11 +1053,113 @@ public class JFDonaciones extends javax.swing.JFrame implements Runnable {
     }//GEN-LAST:event_cmbPaisActionPerformed
 
     private void btnBuscar1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscar1ActionPerformed
+        Ingeniero ing = new Ingeniero();
         String Identificacion = txtBIdentificDon.getText();
-        String sql = "Select Nombre, Apellido1, Identificacion, TipoDeSangre,Telefono,Correo from "
+        boolean flag = false;
+        String fecha = "";
+        String estado = "";
+        String Padecimiento = "";
+        String sql = "Select Nombre, Apellido1, Identificacion, TipoDeSangre, FechaNacimiento,Estado from "
                 + "bancosangre.donadores where Identificacion = '" + Identificacion + "'";
+        ArrayList datos = new ArrayList();
+        Statement st;
+        try {
+            st = cn.createStatement();
+            ResultSet rs = st.executeQuery(sql);
+            while (rs.next()) {
+                if (rs.getString("Identificacion").equals(Identificacion)) {
+                    datos.add(rs.getString(1));
+                    datos.add(rs.getString(2));
+                    datos.add(rs.getString(3));
+                    datos.add(rs.getString(4));
+                    datos.add(rs.getString(5));
+                    datos.add(rs.getString(6));
+                    flag = true;
+                    break;
+                }
+            }
+            if (flag) {
+                lbNombreDo.setVisible(true);
+                lbApellidoDo.setVisible(true);
+                lbIdenDo.setVisible(true);
+                lbTPDo.setVisible(true);
+                lbNombreDo.setText(datos.get(0).toString());
+                lbApellidoDo.setText(datos.get(1).toString());
+                lbIdenDo.setText(datos.get(2).toString());
+                lbTPDo.setText(datos.get(3).toString());
+                fecha = datos.get(4).toString();
+                estado = datos.get(5).toString();
+                txtBIdentificDon.setText("");
+                if (Ingeniero.Edad(fecha)) {
+                    sql = "Select NombrePadecimiento from padecimientos where IDPadecimiento  = (Select "
+                            + "IDPadecimiento from PadecimientosDonadores where IDDonador = (Select IDDonador from "
+                            + "bancosangre.donadores where Identificacion = '" + Identificacion + "'))";
+                    st = cn.createStatement();
+                    rs = st.executeQuery(sql);
+                    while (rs.next()) {
+                        Padecimiento = rs.getString(1);
+                    }
+                    if (Padecimiento.equalsIgnoreCase("Nada")) {
+                        if (estado.equalsIgnoreCase("Activo")) {
+                            btnConfimarDo.setEnabled(true);
+                            txtCantidadS.setEnabled(true);
+                        } else {
+                            JOptionPane.showMessageDialog(null, "Tiene una enfermedad con la cual "
+                                    + "no puede donar", "Error", JOptionPane.INFORMATION_MESSAGE);
+                            btnConfimarDo.setEnabled(false);
+                            txtCantidadS.setEnabled(false);
+                        }
+                    } else {
+                        JOptionPane.showMessageDialog(null, "Tiene una enfermedad con la cual "
+                                + "no puede donar", "Error", JOptionPane.INFORMATION_MESSAGE);
+                        btnConfimarDo.setEnabled(false);
+                        txtCantidadS.setEnabled(false);
+                    }
+                } else {
+                    JOptionPane.showMessageDialog(null, "Es menor de edad "
+                            + "no puede donar", "Error", JOptionPane.INFORMATION_MESSAGE);
+                    btnConfimarDo.setEnabled(false);
+                    txtCantidadS.setEnabled(false);
+                }
+            } else {
+                JOptionPane.showMessageDialog(null, "No"
+                        + " existe donador", "Error", JOptionPane.INFORMATION_MESSAGE);
+                lbNombreDo.setVisible(false);
+                lbApellidoDo.setVisible(false);
+                lbIdenDo.setVisible(false);
+                lbTPDo.setVisible(false);
+                btnConfimarDo.setEnabled(false);
+                txtCantidadS.setEnabled(false);
+                txtBIdentificDon.setText("");
+
+            }
+
+        } catch (SQLException e) {
+            JOptionPane.showMessageDialog(null, "Error", "Error", JOptionPane.ERROR_MESSAGE);
+        }
+
 
     }//GEN-LAST:event_btnBuscar1ActionPerformed
+
+    private void btnConfimarDoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnConfimarDoActionPerformed
+        String Cantidad = txtCantidadS.getText();
+        String Iden = lbIdenDo.getText();
+        String TipoSangre = lbTPDo.getText();
+        if (Integer.parseInt(Cantidad) <= 4500) {
+            try {
+                PreparedStatement pps = cn.prepareStatement("Insert into donaciones(IDDonador,Fecha,Cantidad,TipoSangre)"
+                        + "Values((Select IDDonador from donadores where Identificacion = ?),?,?,?)");
+                pps.setString(1,Iden);
+                pps.setString(2,Iden);
+                pps.setString(3,Cantidad);
+                pps.setString(4,TipoSangre);
+            } catch (SQLException e) {
+
+            }
+        } else {
+            JOptionPane.showMessageDialog(null, "No puede donar más de 4500 ml de sangre");
+        }
+    }//GEN-LAST:event_btnConfimarDoActionPerformed
     boolean bandera = false;
 
     public void run() {
@@ -1116,6 +1236,7 @@ public class JFDonaciones extends javax.swing.JFrame implements Runnable {
     private com.toedter.calendar.JDateChooser JCalendar;
     private javax.swing.JButton btnBuscar;
     private javax.swing.JButton btnBuscar1;
+    private javax.swing.JButton btnConfimarDo;
     private javax.swing.JButton btnEliminar;
     private javax.swing.JButton btnModificar;
     private javax.swing.JComboBox cmbBTS;
@@ -1129,7 +1250,6 @@ public class JFDonaciones extends javax.swing.JFrame implements Runnable {
     private javax.swing.JComboBox cmbSiesDonadoroNO;
     private javax.swing.JComboBox cmbTipoSangre;
     private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
@@ -1146,9 +1266,6 @@ public class JFDonaciones extends javax.swing.JFrame implements Runnable {
     private javax.swing.JLabel jLabel21;
     private javax.swing.JLabel jLabel22;
     private javax.swing.JLabel jLabel23;
-    private javax.swing.JLabel jLabel24;
-    private javax.swing.JLabel jLabel25;
-    private javax.swing.JLabel jLabel26;
     private javax.swing.JLabel jLabel27;
     private javax.swing.JLabel jLabel28;
     private javax.swing.JLabel jLabel3;
@@ -1169,7 +1286,10 @@ public class JFDonaciones extends javax.swing.JFrame implements Runnable {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JTabbedPane jTabbedPane5;
-    private javax.swing.JTextField jTextField1;
+    private javax.swing.JLabel lbApellidoDo;
+    private javax.swing.JLabel lbIdenDo;
+    private javax.swing.JLabel lbNombreDo;
+    private javax.swing.JLabel lbTPDo;
     private javax.swing.JLabel lblHora;
     private javax.swing.JLabel lblMensaje;
     public static javax.swing.JTable tbDatos;
@@ -1179,6 +1299,7 @@ public class JFDonaciones extends javax.swing.JFrame implements Runnable {
     private javax.swing.JFormattedTextField txtBIdentific;
     private javax.swing.JFormattedTextField txtBIdentificDon;
     private javax.swing.JTextField txtBNombre;
+    private javax.swing.JTextField txtCantidadS;
     private javax.swing.JTextField txtCorreo;
     private javax.swing.JTextField txtNombre;
     private javax.swing.JFormattedTextField txtTelefonoDonador;
