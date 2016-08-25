@@ -110,6 +110,9 @@ public class JFDonaciones extends javax.swing.JFrame implements Runnable {
         btnModificar = new javax.swing.JButton();
         btnEliminar = new javax.swing.JButton();
         jPanel4 = new javax.swing.JPanel();
+        jLabel22 = new javax.swing.JLabel();
+        txtBIdentificDon = new javax.swing.JFormattedTextField();
+        btnBuscar1 = new javax.swing.JButton();
         lblHora = new javax.swing.JLabel();
 
         jMenu1.setText("File");
@@ -531,15 +534,50 @@ public class JFDonaciones extends javax.swing.JFrame implements Runnable {
 
         jTabbedPane5.addTab("Buscar/Editar Donador", jPanel3);
 
+        jLabel22.setText("Identificacion:");
+
+        try {
+            txtBIdentificDon.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("#-####-####")));
+        } catch (java.text.ParseException ex) {
+            ex.printStackTrace();
+        }
+
+        btnBuscar1.setText("Buscar");
+        btnBuscar1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnBuscar1ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
         jPanel4.setLayout(jPanel4Layout);
         jPanel4Layout.setHorizontalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 702, Short.MAX_VALUE)
+            .addGroup(jPanel4Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel22)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(txtBIdentificDon, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(499, Short.MAX_VALUE))
+            .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jPanel4Layout.createSequentialGroup()
+                    .addGap(261, 261, 261)
+                    .addComponent(btnBuscar1, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addContainerGap(261, Short.MAX_VALUE)))
         );
         jPanel4Layout.setVerticalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 463, Short.MAX_VALUE)
+            .addGroup(jPanel4Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel22)
+                    .addComponent(txtBIdentificDon, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(432, Short.MAX_VALUE))
+            .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jPanel4Layout.createSequentialGroup()
+                    .addGap(220, 220, 220)
+                    .addComponent(btnBuscar1)
+                    .addContainerGap(220, Short.MAX_VALUE)))
         );
 
         jTabbedPane5.addTab("Donar Sangre", jPanel4);
@@ -933,6 +971,13 @@ public class JFDonaciones extends javax.swing.JFrame implements Runnable {
         bandera = true;
         gestora.cargarlistaProvincia(cmbPais.getSelectedIndex());
     }//GEN-LAST:event_cmbPaisActionPerformed
+
+    private void btnBuscar1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscar1ActionPerformed
+        String Identificacion = txtBIdentificDon.getText();
+        String sql = "Select Nombre, Apellido1, Identificacion, TipoDeSangre,Telefono,Correo from "
+                        + "bancosangre.donadores where Identificacion = '" + Identificacion + "'";
+        
+    }//GEN-LAST:event_btnBuscar1ActionPerformed
     boolean bandera = false;
 
     public void run() {
@@ -1008,6 +1053,7 @@ public class JFDonaciones extends javax.swing.JFrame implements Runnable {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private com.toedter.calendar.JDateChooser JCalendar;
     private javax.swing.JButton btnBuscar;
+    private javax.swing.JButton btnBuscar1;
     private javax.swing.JButton btnEliminar;
     private javax.swing.JButton btnModificar;
     private javax.swing.JComboBox cmbBTS;
@@ -1035,6 +1081,7 @@ public class JFDonaciones extends javax.swing.JFrame implements Runnable {
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel20;
     private javax.swing.JLabel jLabel21;
+    private javax.swing.JLabel jLabel22;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
@@ -1059,6 +1106,7 @@ public class JFDonaciones extends javax.swing.JFrame implements Runnable {
     private javax.swing.JTextField txtApellido2;
     private javax.swing.JTextField txtBApellido;
     private javax.swing.JFormattedTextField txtBIdentific;
+    private javax.swing.JFormattedTextField txtBIdentificDon;
     private javax.swing.JTextField txtBNombre;
     private javax.swing.JTextField txtCorreo;
     private javax.swing.JTextField txtNombre;
