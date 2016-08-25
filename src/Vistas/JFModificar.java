@@ -32,14 +32,14 @@ public class JFModificar extends javax.swing.JFrame {
         lblMensaje.setVisible(false);
         this.setLocationRelativeTo(null);
     }
-    
+
     Conexion cc = new Conexion();
     Connection cn = cc.conexion();
-    
+
     DateFormat df = DateFormat.getDateInstance();
     Controlador.Gestora gestora = new Gestora();
     boolean bandera = false;
-    
+
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -377,8 +377,11 @@ public class JFModificar extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void cmbPaisActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmbPaisActionPerformed
+        bandera = false;
         cmbProvincia.removeAllItems();
         cmbProvincia.addItem("Seleccione la Provincia");
+        cmbCanton.removeAllItems();
+        cmbCanton.addItem("Seleccione el Cantón");
         bandera = true;
         gestora.cargarlistaProvinciaD(cmbPais.getSelectedIndex());
     }//GEN-LAST:event_cmbPaisActionPerformed
@@ -387,9 +390,9 @@ public class JFModificar extends javax.swing.JFrame {
         cmbCanton.removeAllItems();
         cmbCanton.addItem("Seleccione el Cantón");
         if (bandera == false) {
-            
+
         } else {
-            gestora.cargarlistaCantonD(cmbProvincia.getSelectedIndex(), cmbPais.getSelectedIndex());
+            gestora.cargarlistaCantonD(cmbProvincia.getSelectedItem().toString(), cmbPais.getSelectedIndex());
             bandera = false;
         }
     }//GEN-LAST:event_cmbProvinciaActionPerformed
@@ -408,7 +411,7 @@ public class JFModificar extends javax.swing.JFrame {
         String Apellido2 = txtApellido2.getText();
         String identificacion = txtidentificacion.getText();
         String Correo = txtCorreo.getText();
-        
+
         int Longitud = Correo.length();
         char valor;
         boolean bandera = true;
@@ -433,42 +436,42 @@ public class JFModificar extends javax.swing.JFrame {
             lblMensaje.setVisible(true);
             bandera = false;
         }
-        
+
         if (cmbPais.getSelectedIndex() == 0) {
             lblMensaje.setForeground(Color.red);
             lblMensaje.setText("Error en algun campo");
             lblMensaje.setVisible(true);
             bandera = false;
         }
-        
+
         if (cmbProvincia.getSelectedIndex() == 0) {
             lblMensaje.setForeground(Color.red);
             lblMensaje.setText("Error en algun campo");
             lblMensaje.setVisible(true);
             bandera = false;
         }
-        
+
         if (cmbCanton.getSelectedIndex() == 0) {
             lblMensaje.setForeground(Color.red);
             lblMensaje.setText("Error en algun campo");
             lblMensaje.setVisible(true);
             bandera = false;
         }
-        
+
         if (cmbPadecimientos1.getSelectedIndex() == 0) {
             lblMensaje.setForeground(Color.red);
             lblMensaje.setText("Error en algun campo");
             lblMensaje.setVisible(true);
             bandera = false;
         }
-        
+
         if (cmbTipoSangre.getSelectedIndex() == 0) {
             lblMensaje.setForeground(Color.red);
             lblMensaje.setText("Error en algun campo");
             lblMensaje.setVisible(true);
             bandera = false;
         }
-        
+
         if (cmbEstadoCivil.getSelectedIndex() == 0) {
             lblMensaje.setForeground(Color.red);
             lblMensaje.setText("Error en algun campo");
@@ -505,7 +508,7 @@ public class JFModificar extends javax.swing.JFrame {
         if (bandera == true) {
             lblMensaje.setText("Donador agregado con Exito!!");
             lblMensaje.setForeground(Color.green);
-            
+
             String Tel = txtTelefonoDonador.getText();
             String Cal = df.format(JCalendar.getDate());
             txtNombre.setText("");
@@ -514,7 +517,7 @@ public class JFModificar extends javax.swing.JFrame {
             txtidentificacion.setText("");
             txtCorreo.setText("");
             txtTelefonoDonador.setText("");
-            
+
             try {
                 PreparedStatement pps = cn.prepareStatement("UPDATE donadores SET Nombre = ?, Apellido1 = ?, "
                         + "Apellido2 = ?, FechaNacimiento = ?, Identificacion = ?, TipoDeSangre = ?, "
@@ -543,7 +546,7 @@ public class JFModificar extends javax.swing.JFrame {
                         + "IDPadecimiento = (Select IDPadecimiento from padecimientos where NombrePadecimiento = ?)");
                 pps3.setString(1, cmbPadecimientos1.getSelectedItem().toString());
                 pps3.execute();
-                
+
                 JOptionPane.showMessageDialog(null, "Datos Guardados con Exito");
                 this.dispose();
                 JFDonaciones don = new JFDonaciones();
