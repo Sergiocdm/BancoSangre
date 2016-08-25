@@ -113,6 +113,15 @@ public class JFDonaciones extends javax.swing.JFrame implements Runnable {
         jLabel22 = new javax.swing.JLabel();
         txtBIdentificDon = new javax.swing.JFormattedTextField();
         btnBuscar1 = new javax.swing.JButton();
+        jLabel23 = new javax.swing.JLabel();
+        jLabel24 = new javax.swing.JLabel();
+        jLabel25 = new javax.swing.JLabel();
+        jLabel26 = new javax.swing.JLabel();
+        jSeparator1 = new javax.swing.JSeparator();
+        jLabel27 = new javax.swing.JLabel();
+        jTextField1 = new javax.swing.JTextField();
+        jLabel28 = new javax.swing.JLabel();
+        jButton2 = new javax.swing.JButton();
         lblHora = new javax.swing.JLabel();
 
         jMenu1.setText("File");
@@ -549,18 +558,56 @@ public class JFDonaciones extends javax.swing.JFrame implements Runnable {
             }
         });
 
+        jLabel23.setText("Nombre ");
+
+        jLabel24.setText("Apellido");
+
+        jLabel25.setText("Identificacion");
+
+        jLabel26.setText("TipoSangre");
+
+        jLabel27.setText("Cantidad de Sangre a Donar: ");
+
+        jLabel28.setText("Recuerde que para donar sangre tiene que ser mayor de edad y contar con un peso superior a los 50 kg");
+
+        jButton2.setText("Aceptar");
+
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
         jPanel4.setLayout(jPanel4Layout);
         jPanel4Layout.setHorizontalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel4Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jLabel22)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(txtBIdentificDon, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel4Layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(jLabel22))
+                    .addGroup(jPanel4Layout.createSequentialGroup()
+                        .addGap(26, 26, 26)
+                        .addComponent(jLabel23, javax.swing.GroupLayout.PREFERRED_SIZE, 68, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jLabel24)
+                    .addComponent(txtBIdentificDon, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(88, 88, 88)
-                .addComponent(btnBuscar1, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(211, Short.MAX_VALUE))
+                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(btnBuscar1, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
+                        .addComponent(jLabel25)
+                        .addGap(35, 35, 35)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 103, Short.MAX_VALUE)
+                .addComponent(jLabel26)
+                .addGap(44, 44, 44))
+            .addComponent(jSeparator1)
+            .addGroup(jPanel4Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel4Layout.createSequentialGroup()
+                        .addComponent(jLabel27)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jLabel28)
+                    .addComponent(jButton2))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel4Layout.setVerticalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -570,7 +617,23 @@ public class JFDonaciones extends javax.swing.JFrame implements Runnable {
                     .addComponent(jLabel22)
                     .addComponent(txtBIdentificDon, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnBuscar1))
-                .addContainerGap(429, Short.MAX_VALUE))
+                .addGap(18, 18, 18)
+                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel23)
+                    .addComponent(jLabel24)
+                    .addComponent(jLabel25)
+                    .addComponent(jLabel26))
+                .addGap(18, 18, 18)
+                .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jLabel28)
+                .addGap(30, 30, 30)
+                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel27)
+                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(41, 41, 41)
+                .addComponent(jButton2)
+                .addContainerGap(230, Short.MAX_VALUE))
         );
 
         jTabbedPane5.addTab("Donar Sangre", jPanel4);
@@ -582,12 +645,12 @@ public class JFDonaciones extends javax.swing.JFrame implements Runnable {
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addContainerGap(593, Short.MAX_VALUE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(lblHora, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(20, 20, 20))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jTabbedPane5, javax.swing.GroupLayout.DEFAULT_SIZE, 687, Short.MAX_VALUE)
+                .addComponent(jTabbedPane5)
                 .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
@@ -653,26 +716,26 @@ public class JFDonaciones extends javax.swing.JFrame implements Runnable {
             donador2 = gestora.cargarModificar2(Iden);
             JFModificar modif = new JFModificar();
             modif.setVisible(true);
-        JFModificar.txtNombre.setText(donador.get(0).toString());
-        JFModificar.txtApellido1.setText(donador.get(1).toString());
-        JFModificar.txtApellido2.setText(donador.get(2).toString());
+            JFModificar.txtNombre.setText(donador.get(0).toString());
+            JFModificar.txtApellido1.setText(donador.get(1).toString());
+            JFModificar.txtApellido2.setText(donador.get(2).toString());
             try {
                 c.setTime(sdf.parse(donador.get(3).toString()));
             } catch (ParseException ex) {
                 Logger.getLogger(JFDonaciones.class.getName()).log(Level.SEVERE, null, ex);
             }
-        JFModificar.JCalendar.setCalendar(c);
-        JFModificar.txtidentificacion.setText(donador.get(4).toString());
-        JFModificar.cmbTipoSangre.setSelectedItem(donador.get(5).toString());
-        JFModificar.cmbEstadoCivil.setSelectedItem(donador.get(6).toString());
-        JFModificar.cmbEstado.setSelectedItem(donador.get(7).toString());
-        JFModificar.cmbSiesDonadoroNO.setSelectedItem(donador.get(8).toString());
-        JFModificar.txtTelefonoDonador.setText(donador.get(9).toString());
-        JFModificar.txtCorreo.setText(donador.get(10).toString());
-        JFModificar.cmbPadecimientos1.setSelectedItem(donador1.get(0).toString());
-        JFModificar.cmbPais.setSelectedItem(donador2.get(0).toString());
-        JFModificar.cmbProvincia.setSelectedItem(donador2.get(1).toString());
-        JFModificar.cmbCanton.setSelectedItem(donador2.get(2).toString());
+            JFModificar.JCalendar.setCalendar(c);
+            JFModificar.txtidentificacion.setText(donador.get(4).toString());
+            JFModificar.cmbTipoSangre.setSelectedItem(donador.get(5).toString());
+            JFModificar.cmbEstadoCivil.setSelectedItem(donador.get(6).toString());
+            JFModificar.cmbEstado.setSelectedItem(donador.get(7).toString());
+            JFModificar.cmbSiesDonadoroNO.setSelectedItem(donador.get(8).toString());
+            JFModificar.txtTelefonoDonador.setText(donador.get(9).toString());
+            JFModificar.txtCorreo.setText(donador.get(10).toString());
+            JFModificar.cmbPadecimientos1.setSelectedItem(donador1.get(0).toString());
+            JFModificar.cmbPais.setSelectedItem(donador2.get(0).toString());
+            JFModificar.cmbProvincia.setSelectedItem(donador2.get(1).toString());
+            JFModificar.cmbCanton.setSelectedItem(donador2.get(2).toString());
             this.dispose();
         }
     }//GEN-LAST:event_btnModificarActionPerformed
@@ -956,14 +1019,17 @@ public class JFDonaciones extends javax.swing.JFrame implements Runnable {
         if (bandera == false) {
 
         } else {
-            gestora.cargarlistaCanton(cmbProvincia.getSelectedIndex(), cmbPais.getSelectedIndex());
-            bandera = false;
+            String Provincia = cmbProvincia.getSelectedItem().toString();
+            gestora.cargarlistaCanton(Provincia, cmbPais.getSelectedIndex());
         }
     }//GEN-LAST:event_cmbProvinciaActionPerformed
 
     private void cmbPaisActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmbPaisActionPerformed
+        bandera = false;
         cmbProvincia.removeAllItems();
         cmbProvincia.addItem("Seleccione la Provincia");
+        cmbCanton.removeAllItems();
+        cmbCanton.addItem("Seleccione el Cantón");
         bandera = true;
         gestora.cargarlistaProvincia(cmbPais.getSelectedIndex());
     }//GEN-LAST:event_cmbPaisActionPerformed
@@ -971,8 +1037,8 @@ public class JFDonaciones extends javax.swing.JFrame implements Runnable {
     private void btnBuscar1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscar1ActionPerformed
         String Identificacion = txtBIdentificDon.getText();
         String sql = "Select Nombre, Apellido1, Identificacion, TipoDeSangre,Telefono,Correo from "
-                        + "bancosangre.donadores where Identificacion = '" + Identificacion + "'";
-        
+                + "bancosangre.donadores where Identificacion = '" + Identificacion + "'";
+
     }//GEN-LAST:event_btnBuscar1ActionPerformed
     boolean bandera = false;
 
@@ -1063,6 +1129,7 @@ public class JFDonaciones extends javax.swing.JFrame implements Runnable {
     private javax.swing.JComboBox cmbSiesDonadoroNO;
     private javax.swing.JComboBox cmbTipoSangre;
     private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
@@ -1078,6 +1145,12 @@ public class JFDonaciones extends javax.swing.JFrame implements Runnable {
     private javax.swing.JLabel jLabel20;
     private javax.swing.JLabel jLabel21;
     private javax.swing.JLabel jLabel22;
+    private javax.swing.JLabel jLabel23;
+    private javax.swing.JLabel jLabel24;
+    private javax.swing.JLabel jLabel25;
+    private javax.swing.JLabel jLabel26;
+    private javax.swing.JLabel jLabel27;
+    private javax.swing.JLabel jLabel28;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
@@ -1094,7 +1167,9 @@ public class JFDonaciones extends javax.swing.JFrame implements Runnable {
     private javax.swing.JPanel jPanel4;
     private javax.swing.JPopupMenu jPopupMenu3;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JSeparator jSeparator1;
     private javax.swing.JTabbedPane jTabbedPane5;
+    private javax.swing.JTextField jTextField1;
     private javax.swing.JLabel lblHora;
     private javax.swing.JLabel lblMensaje;
     public static javax.swing.JTable tbDatos;

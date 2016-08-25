@@ -69,14 +69,15 @@ public class Gestora {
 
     }
 
-    public void cargarlistaCanton(int y, int x) {
+    public void cargarlistaCanton(String y, int x) {
         Connection cn = cc.conexion();
         Statement st = null;
         ResultSet rs = null;
 
         try {
             st = cn.createStatement();
-            rs = st.executeQuery("Select NombreCanton from canton where IDPais = " + y + " and IDProvincia = " + x);
+            rs = st.executeQuery("Select NombreCanton from canton where IDPais = " + x + " and IDProvincia = "
+                    + "(select IDProvincia from provincia where NombreProvincia ='"+y+"')");
 
             while (rs.next()) {
                 rs.getString("NombreCanton");
