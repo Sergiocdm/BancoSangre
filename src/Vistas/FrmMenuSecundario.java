@@ -14,10 +14,6 @@ public class FrmMenuSecundario extends javax.swing.JFrame {
     /**
      * Creates new form FrmMenuSecundario
      */
-    JFDonaciones donadores = new JFDonaciones();
-    FrmSistemaAdministrador sistemaadministrador = new FrmSistemaAdministrador();
-    FrmReportes reportes = new FrmReportes();
-
     public FrmMenuSecundario() {
         initComponents();
         setLocationRelativeTo(this);
@@ -35,7 +31,6 @@ public class FrmMenuSecundario extends javax.swing.JFrame {
         btnClientes = new javax.swing.JButton();
         btnDonadores = new javax.swing.JButton();
         btnAyuda = new javax.swing.JButton();
-        btnSistemaAdministracion = new javax.swing.JButton();
         btnAdministracion = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
 
@@ -62,13 +57,6 @@ public class FrmMenuSecundario extends javax.swing.JFrame {
             }
         });
 
-        btnSistemaAdministracion.setText("Sistema/Administracion");
-        btnSistemaAdministracion.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnSistemaAdministracionActionPerformed(evt);
-            }
-        });
-
         btnAdministracion.setText("Administracion");
         btnAdministracion.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -84,35 +72,33 @@ public class FrmMenuSecundario extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(0, 0, Short.MAX_VALUE)
-                .addComponent(btnAdministracion, javax.swing.GroupLayout.PREFERRED_SIZE, 138, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(75, 75, 75)
-                .addComponent(btnAyuda, javax.swing.GroupLayout.PREFERRED_SIZE, 138, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(125, 125, 125))
-            .addGroup(layout.createSequentialGroup()
-                .addGap(42, 42, 42)
-                .addComponent(btnSistemaAdministracion, javax.swing.GroupLayout.PREFERRED_SIZE, 138, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 75, Short.MAX_VALUE)
-                .addComponent(btnClientes, javax.swing.GroupLayout.PREFERRED_SIZE, 138, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(33, 33, 33)
-                .addComponent(btnDonadores, javax.swing.GroupLayout.PREFERRED_SIZE, 138, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(36, 36, 36))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jLabel2)
                 .addGap(190, 190, 190))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(btnClientes, javax.swing.GroupLayout.PREFERRED_SIZE, 138, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(0, 124, Short.MAX_VALUE)
+                        .addComponent(btnAdministracion, javax.swing.GroupLayout.PREFERRED_SIZE, 138, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(75, 75, 75)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(btnAyuda, javax.swing.GroupLayout.PREFERRED_SIZE, 138, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnDonadores, javax.swing.GroupLayout.PREFERRED_SIZE, 138, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(125, 125, 125))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(29, 29, 29)
                 .addComponent(jLabel2)
-                .addGap(28, 28, 28)
+                .addGap(37, 37, 37)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnDonadores, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnClientes, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnSistemaAdministracion, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 65, Short.MAX_VALUE)
+                    .addComponent(btnDonadores, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 56, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnAyuda, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnAdministracion, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -122,26 +108,25 @@ public class FrmMenuSecundario extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void btnSistemaAdministracionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSistemaAdministracionActionPerformed
-        // TODO add your handling code here:
-        sistemaadministrador.setVisible(true);
-    }//GEN-LAST:event_btnSistemaAdministracionActionPerformed
-
     private void btnClientesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnClientesActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_btnClientesActionPerformed
 
     private void btnDonadoresActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDonadoresActionPerformed
         // TODO add your handling code here
+        JFDonaciones donadores = new JFDonaciones();
         donadores.setVisible(true);
     }//GEN-LAST:event_btnDonadoresActionPerformed
 
     private void btnAdministracionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAdministracionActionPerformed
-        // TODO add your handling code here:
+        FrmAgregarAdminUsuario adm = new FrmAgregarAdminUsuario();
+        adm.setVisible(true);
+        this.dispose();
     }//GEN-LAST:event_btnAdministracionActionPerformed
 
     private void btnAyudaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAyudaActionPerformed
         // TODO add your handling code here:
+        FrmReportes reportes = new FrmReportes();
         reportes.setVisible(true);
     }//GEN-LAST:event_btnAyudaActionPerformed
 
@@ -181,11 +166,10 @@ public class FrmMenuSecundario extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnAdministracion;
-    private javax.swing.JButton btnAyuda;
-    private javax.swing.JButton btnClientes;
-    private javax.swing.JButton btnDonadores;
-    private javax.swing.JButton btnSistemaAdministracion;
+    public static javax.swing.JButton btnAdministracion;
+    public static javax.swing.JButton btnAyuda;
+    public static javax.swing.JButton btnClientes;
+    public static javax.swing.JButton btnDonadores;
     private javax.swing.JLabel jLabel2;
     // End of variables declaration//GEN-END:variables
 }

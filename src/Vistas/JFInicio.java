@@ -19,7 +19,7 @@ public class JFInicio extends javax.swing.JFrame {
 
     int x, y;
     Conexion cc = new Conexion();
-    FrmMenuSecundario menusecundario = new FrmMenuSecundario();
+    FrmMenuSecundario ms = new FrmMenuSecundario();
 
     /**
      * Creates new form JFInicio
@@ -34,10 +34,12 @@ public class JFInicio extends javax.swing.JFrame {
     }
 
     void acceder(String usuario, String pass) {
-
         Connection cn = cc.conexion();
         PreparedStatement pst = null;
         ResultSet rs = null;
+        String Cliente ="";
+        String Donadores ="";
+        String Ayuda ="";
         String sql = "Select * from usuario where Usuario=? and PasswordU=md5(?)";
         String cap = "";
         try {
@@ -52,18 +54,44 @@ public class JFInicio extends javax.swing.JFrame {
                 JOptionPane.showMessageDialog(null, "Bienvenido Administrador");
             }
             if (cap.equals("Usuario")) {
-                JOptionPane.showMessageDialog(null, "Bienvenido Usuario");
-            }
-            if ((!cap.equals("Administrador") && (!cap.equals("Usuario")))) {
-                JOptionPane.showMessageDialog(null, "No existe Usuario");
-            }
-            cn.close();
-        } catch (SQLException ex) {
+                
+                String datos1[] = new String[3];
+                Statement st1= cn.createStatement();
+               String sql1 = "Select ClientesV, DonadoresV, AyudaV from permisos where IDUsuario = ("
+                       + "Select IDUsuario from usuario where Usuario ='"+usuario+"')";
+                ResultSet rs1 = st1.executeQuery(sql1);
+                while (rs1.next()) {
+                    Cliente = rs1.getString(1);
+                    Donadores = rs1.getString(2);
+                    Ayuda = rs1.getString(3);
+                }
+                if(Cliente.equalsIgnoreCase("Permitir")){
+                    FrmMenuSecundario.btnClientes.setEnabled(true);
+                }else{
+                FrmMenuSecundario.btnClientes.setEnabled(false);
+                }if(Donadores.equalsIgnoreCase("Permitir")){
+                FrmMenuSecundario.btnDonadores.setEnabled(true);
+                }else{
+                FrmMenuSecundario.btnDonadores.setEnabled(false);
+                }if(Ayuda.equalsIgnoreCase("Permitir")){
+                FrmMenuSecundario.btnAyuda.setEnabled(true);
+                }else{
+                FrmMenuSecundario.btnAyuda.setEnabled(false);
+                }
+                FrmMenuSecundario.btnAdministracion.setEnabled(false);
+                    JOptionPane.showMessageDialog(null, "Bienvenido Usuario");
+                    
+                }
+                if ((!cap.equals("Administrador") && (!cap.equals("Usuario")))) {
+                    JOptionPane.showMessageDialog(null, "No existe Usuario");
+                }
+                cn.close();
+            }catch (SQLException ex) {
             Logger.getLogger(JFInicio.class.getName()).log(Level.SEVERE, null, ex);
         }
-    }
+        }
 
-    @SuppressWarnings("unchecked")
+        @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
@@ -272,8 +300,8 @@ public class JFInicio extends javax.swing.JFrame {
         String usuario = txtCuenta.getText();
         String pass = new String(Password.getPassword());
         acceder(usuario, pass);
-        menusecundario.setVisible(true);
-        
+        ms.setVisible(true);
+
     }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
