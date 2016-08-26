@@ -584,6 +584,12 @@ public class JFDonaciones extends javax.swing.JFrame implements Runnable {
 
         jLabel27.setText("Cantidad de Sangre a Donar: ");
 
+        txtCantidadS.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtCantidadSKeyTyped(evt);
+            }
+        });
+
         jLabel28.setText("Recuerde que para donar sangre tiene que ser mayor de edad y contar con un peso superior a los 50 kg");
 
         btnConfimarDo.setText("Confirmar");
@@ -1140,15 +1146,8 @@ public class JFDonaciones extends javax.swing.JFrame implements Runnable {
                         Padecimiento = rs.getString(1);
                     }
                     if (Padecimiento.equalsIgnoreCase("Nada")) {
-                        if (estado.equalsIgnoreCase("Activo")) {
                             btnConfimarDo.setEnabled(true);
                             txtCantidadS.setEnabled(true);
-                        } else {
-                            JOptionPane.showMessageDialog(null, "Tiene una enfermedad con la cual "
-                                    + "no puede donar", "Error", JOptionPane.INFORMATION_MESSAGE);
-                            btnConfimarDo.setEnabled(false);
-                            txtCantidadS.setEnabled(false);
-                        }
                     } else {
                         JOptionPane.showMessageDialog(null, "Tiene una enfermedad con la cual "
                                 + "no puede donar", "Error", JOptionPane.INFORMATION_MESSAGE);
@@ -1170,6 +1169,7 @@ public class JFDonaciones extends javax.swing.JFrame implements Runnable {
                     PreparedStatement pps1 = cn.prepareStatement(sql1);
                     pps1.execute();
                     JOptionPane.showMessageDialog(null, "Se ha activado su cuenta","Activada",JOptionPane.INFORMATION_MESSAGE);
+                    limpiardonar();
                 }else{
   
                 }
@@ -1215,6 +1215,9 @@ public class JFDonaciones extends javax.swing.JFrame implements Runnable {
         } else {
             fecha = day + "/" + month + "/" + year;
         }
+        if(txtCantidadS.getText().trim().equals("")){
+            JOptionPane.showMessageDialog(null, "No hay una cantidad de sangre","Error",JOptionPane.INFORMATION_MESSAGE);
+        }else{
         if (Integer.parseInt(Cantidad) <= 4500) {
                 try {
                     if (gestora.UltimaDon(Iden)) {
@@ -1245,8 +1248,17 @@ public class JFDonaciones extends javax.swing.JFrame implements Runnable {
         } else {
             JOptionPane.showMessageDialog(null, "No puede donar más de 4500 ml de sangre");
         }
+        }
         txtCantidadS.setText("");
     }//GEN-LAST:event_btnConfimarDoActionPerformed
+
+    private void txtCantidadSKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtCantidadSKeyTyped
+         char c=evt.getKeyChar(); 
+          if(Character.isLetter(c)) { 
+              getToolkit().beep(); 
+              evt.consume(); 
+          } 
+    }//GEN-LAST:event_txtCantidadSKeyTyped
     boolean bandera = false;
 
     public void run() {
