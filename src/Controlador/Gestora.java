@@ -4,8 +4,10 @@ import BaseDeDatos.Conexion;
 import Vistas.JFInicio;
 import java.sql.*;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JOptionPane;
 
 public class Gestora {
 
@@ -77,7 +79,7 @@ public class Gestora {
         try {
             st = cn.createStatement();
             rs = st.executeQuery("Select NombreCanton from canton where IDPais = " + x + " and IDProvincia = "
-                    + "(select IDProvincia from provincia where NombreProvincia ='"+y+"')");
+                    + "(select IDProvincia from provincia where NombreProvincia ='" + y + "')");
 
             while (rs.next()) {
                 rs.getString("NombreCanton");
@@ -155,7 +157,7 @@ public class Gestora {
         try {
             st = cn.createStatement();
             rs = st.executeQuery("Select NombreCanton from canton where IDPais = " + x + " and IDProvincia = "
-                    + "(select IDProvincia from provincia where NombreProvincia ='"+y+"')");
+                    + "(select IDProvincia from provincia where NombreProvincia ='" + y + "')");
 
             while (rs.next()) {
                 rs.getString("NombreCanton");
@@ -282,5 +284,60 @@ public class Gestora {
             Logger.getLogger(JFInicio.class.getName()).log(Level.SEVERE, null, ex);
         }
         return donador;
+    }
+
+    public boolean UltimaDon(String Iden) {
+        Connection cn = cc.conexion();
+        Statement st = null;
+        ResultSet rs = null;
+        boolean bandera = false;
+        java.util.Date date = new java.util.Date();
+        Calendar cal = Calendar.getInstance();
+        cal.setTime(date);
+        int year = cal.get(Calendar.YEAR);
+        int month = cal.get(Calendar.MONTH);
+
+        try {
+            st = cn.createStatement();
+            rs = st.executeQuery("select fecha from donaciones where \n"
+                    + "IDDonacion =(select max(IDDonacion) from  donaciones where IDDonador = (Select IDDonador "
+                    + "from donadores where Identificacion ='" + Iden + "'))");
+
+            while (rs.next()) {
+                String fecha = rs.getString("Fecha");
+                int Anno = Integer.parseInt(fecha.substring(6, 10));
+                int mes = Integer.parseInt(fecha.substring(3, 5));
+
+                if (Anno == year) {
+                    if (month - mes > 2) {
+                        bandera = true;
+                        break;
+                    } else {
+                        bandera = false;
+                        break;
+                    }
+                } else if (year - Anno == 1) {
+                    if (month < mes) {
+                        if (mes - month > 2) {
+                            bandera = true;
+                            break;
+                        } else {
+                            bandera = false;
+                            break;
+                        }
+                    } else {
+                        bandera = true;
+                        break;
+                    }
+                } else {
+                    bandera = true;
+                    break;
+                }
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(JFInicio.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+        return bandera;
     }
 }

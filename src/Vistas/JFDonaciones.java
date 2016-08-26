@@ -51,7 +51,7 @@ public class JFDonaciones extends javax.swing.JFrame implements Runnable {
         setLocationRelativeTo(null);
         h1 = new Thread(this);
         h1.start();
-
+        mostrarTabla();
     }
 
     Controlador.Gestora gestora = new Gestora();
@@ -130,6 +130,9 @@ public class JFDonaciones extends javax.swing.JFrame implements Runnable {
         jLabel28 = new javax.swing.JLabel();
         btnConfimarDo = new javax.swing.JButton();
         jLabel23 = new javax.swing.JLabel();
+        jPanel5 = new javax.swing.JPanel();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        tbClientes = new javax.swing.JTable();
         lblHora = new javax.swing.JLabel();
 
         jMenu1.setText("File");
@@ -220,6 +223,7 @@ public class JFDonaciones extends javax.swing.JFrame implements Runnable {
         } catch (java.text.ParseException ex) {
             ex.printStackTrace();
         }
+        txtTelefonoDonador.setFocusLostBehavior(javax.swing.JFormattedTextField.COMMIT);
 
         cmbTipoSangre.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Seleccione Tipo de Sangre", "A+", "A-", "B+", "B-", "O+", "O-", "AB+", "AB-" }));
 
@@ -238,6 +242,7 @@ public class JFDonaciones extends javax.swing.JFrame implements Runnable {
         } catch (java.text.ParseException ex) {
             ex.printStackTrace();
         }
+        txtidentificacion.setFocusLostBehavior(javax.swing.JFormattedTextField.COMMIT);
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -558,6 +563,8 @@ public class JFDonaciones extends javax.swing.JFrame implements Runnable {
         } catch (java.text.ParseException ex) {
             ex.printStackTrace();
         }
+        txtBIdentificDon.setDragEnabled(true);
+        txtBIdentificDon.setFocusLostBehavior(javax.swing.JFormattedTextField.COMMIT);
 
         btnBuscar1.setText("Buscar");
         btnBuscar1.addActionListener(new java.awt.event.ActionListener() {
@@ -656,6 +663,35 @@ public class JFDonaciones extends javax.swing.JFrame implements Runnable {
 
         jTabbedPane5.addTab("Donar Sangre", jPanel4);
 
+        tbClientes.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+
+            }
+        ));
+        jScrollPane2.setViewportView(tbClientes);
+
+        javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
+        jPanel5.setLayout(jPanel5Layout);
+        jPanel5Layout.setHorizontalGroup(
+            jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel5Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 662, Short.MAX_VALUE)
+                .addContainerGap())
+        );
+        jPanel5Layout.setVerticalGroup(
+            jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel5Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 441, Short.MAX_VALUE)
+                .addContainerGap())
+        );
+
+        jTabbedPane5.addTab("Clientes", jPanel5);
+
         lblHora.setText("jLabel4");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
@@ -743,7 +779,7 @@ public class JFDonaciones extends javax.swing.JFrame implements Runnable {
                 Logger.getLogger(JFDonaciones.class.getName()).log(Level.SEVERE, null, ex);
             }
             JFModificar.JCalendar.setCalendar(c);
-            JFModificar.txtidentificacion.setText(donador.get(4).toString());
+            JFModificar.lblIden.setText(Iden);
             JFModificar.cmbTipoSangre.setSelectedItem(donador.get(5).toString());
             JFModificar.cmbEstadoCivil.setSelectedItem(donador.get(6).toString());
             JFModificar.cmbEstado.setSelectedItem(donador.get(7).toString());
@@ -1056,10 +1092,11 @@ public class JFDonaciones extends javax.swing.JFrame implements Runnable {
         Ingeniero ing = new Ingeniero();
         String Identificacion = txtBIdentificDon.getText();
         boolean flag = false;
+        String ID = "";
         String fecha = "";
         String estado = "";
         String Padecimiento = "";
-        String sql = "Select Nombre, Apellido1, Identificacion, TipoDeSangre, FechaNacimiento,Estado from "
+        String sql = "Select Nombre, Apellido1, Identificacion, TipoDeSangre, FechaNacimiento,Estado, IDDonador from "
                 + "bancosangre.donadores where Identificacion = '" + Identificacion + "'";
         ArrayList datos = new ArrayList();
         Statement st;
@@ -1074,6 +1111,7 @@ public class JFDonaciones extends javax.swing.JFrame implements Runnable {
                     datos.add(rs.getString(4));
                     datos.add(rs.getString(5));
                     datos.add(rs.getString(6));
+                    ID = rs.getString(7);
                     flag = true;
                     break;
                 }
@@ -1142,23 +1180,50 @@ public class JFDonaciones extends javax.swing.JFrame implements Runnable {
     }//GEN-LAST:event_btnBuscar1ActionPerformed
 
     private void btnConfimarDoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnConfimarDoActionPerformed
+        Gestora gestora = new Gestora();
         String Cantidad = txtCantidadS.getText();
         String Iden = lbIdenDo.getText();
         String TipoSangre = lbTPDo.getText();
+        Date date = new Date();
+        Calendar cal = Calendar.getInstance();
+        cal.setTime(date);
+        int year = cal.get(Calendar.YEAR);
+        int month = cal.get(Calendar.MONTH);
+        int day = cal.get(Calendar.DAY_OF_MONTH);
+        String fecha = "";
+        if (day <= 9) {
+            fecha = "0" + day + "/" + month + "/" + year;
+        } else if (month <= 9) {
+            fecha = day + "/0" + month + "/" + year;
+        } else if (day <= 9 && month <= 9) {
+            fecha = "0" + day + "/0" + month + "/" + year;
+        } else {
+            fecha = day + "/" + month + "/" + year;
+        }
         if (Integer.parseInt(Cantidad) <= 4500) {
             try {
-                PreparedStatement pps = cn.prepareStatement("Insert into donaciones(IDDonador,Fecha,Cantidad,TipoSangre)"
-                        + "Values((Select IDDonador from donadores where Identificacion = ?),?,?,?)");
-                pps.setString(1,Iden);
-                pps.setString(2,Iden);
-                pps.setString(3,Cantidad);
-                pps.setString(4,TipoSangre);
+                if (gestora.UltimaDon(Iden)) {
+                    PreparedStatement pps = cn.prepareStatement("INSERT INTO donaciones (IDDonador, Fecha, cantidad, TipoSangre) VALUES (("
+                            + "Select IDDonador from donadores where Identificacion = ?), ?, ?, ?);");
+                    pps.setString(1, Iden);
+                    pps.setString(2, fecha);
+                    pps.setString(3, Cantidad);
+                    pps.setString(4, TipoSangre);
+                    pps.execute();
+                    JOptionPane.showMessageDialog(null, "Se a completado la donación", "Donación", JOptionPane.DEFAULT_OPTION);
+                    limpiardonar();
+                } else {
+                    JOptionPane.showMessageDialog(null, "Su última donación fue hace 2 "
+                            + "meses no puede donar", "Error", JOptionPane.INFORMATION_MESSAGE);
+                    limpiardonar();
+                }
             } catch (SQLException e) {
-
+                JOptionPane.showMessageDialog(null, "ERROR 404", "Error", JOptionPane.ERROR_MESSAGE);
             }
         } else {
             JOptionPane.showMessageDialog(null, "No puede donar más de 4500 ml de sangre");
         }
+        txtCantidadS.setText("");
     }//GEN-LAST:event_btnConfimarDoActionPerformed
     boolean bandera = false;
 
@@ -1192,6 +1257,54 @@ public class JFDonaciones extends javax.swing.JFrame implements Runnable {
                 + calendario.get(Calendar.MINUTE) : "0" + calendario.get(Calendar.MINUTE);
         segundos = calendario.get(Calendar.SECOND) > 9 ? ""
                 + calendario.get(Calendar.SECOND) : "0" + calendario.get(Calendar.SECOND);
+    }
+
+    private void limpiardonar() {
+        lbNombreDo.setVisible(false);
+        lbApellidoDo.setVisible(false);
+        lbIdenDo.setVisible(false);
+        lbTPDo.setVisible(false);
+        lbNombreDo.setText("");
+        lbApellidoDo.setText("");
+        lbIdenDo.setText("");
+        lbTPDo.setText("");
+        txtCantidadS.setText("");
+        btnConfimarDo.setEnabled(false);
+        txtCantidadS.setEnabled(false);
+    }
+
+    void mostrarTabla() {
+        DefaultTableModel modelo = new DefaultTableModel();
+        modelo.addColumn("Nombre");
+        modelo.addColumn("Apellido");
+        modelo.addColumn("Identificacion");
+        modelo.addColumn("Tipo de Sangre");
+        modelo.addColumn("Telefono");
+        modelo.addColumn("Correo");
+        tbClientes.setModel(modelo);
+
+        String sql = "Select Nombre, Apellido1, Identificacion, TipoDeSangre, FechaNacimiento,Estado, IDDonador from "
+                + "bancosangre.donadores";
+
+        String datos[] = new String[6];
+        Statement st;
+        try {
+            st = cn.createStatement();
+            ResultSet rs = st.executeQuery(sql);
+            while (rs.next()) {
+                datos[0] = rs.getString(1);
+                datos[1] = rs.getString(2);
+                datos[2] = rs.getString(3);
+                datos[3] = rs.getString(4);
+                datos[4] = rs.getString(5);
+                datos[5] = rs.getString(6);
+                modelo.addRow(datos);
+            }
+            tbClientes.setModel(modelo);
+        } catch (SQLException e) {
+            JOptionPane.showMessageDialog(null, "Error", "Error", JOptionPane.ERROR_MESSAGE);
+        }
+
     }
 
     public static void main(String args[]) {
@@ -1282,8 +1395,10 @@ public class JFDonaciones extends javax.swing.JFrame implements Runnable {
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
+    private javax.swing.JPanel jPanel5;
     private javax.swing.JPopupMenu jPopupMenu3;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JTabbedPane jTabbedPane5;
     private javax.swing.JLabel lbApellidoDo;
@@ -1292,6 +1407,7 @@ public class JFDonaciones extends javax.swing.JFrame implements Runnable {
     private javax.swing.JLabel lbTPDo;
     private javax.swing.JLabel lblHora;
     private javax.swing.JLabel lblMensaje;
+    private javax.swing.JTable tbClientes;
     public static javax.swing.JTable tbDatos;
     private javax.swing.JTextField txtApellido1;
     private javax.swing.JTextField txtApellido2;

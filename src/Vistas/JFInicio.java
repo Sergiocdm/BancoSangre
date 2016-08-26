@@ -1,7 +1,6 @@
 package Vistas;
 
 import BaseDeDatos.Conexion;
-import Controlador.Gestora;
 import com.sun.awt.AWTUtilities;
 import java.awt.MouseInfo;
 import java.awt.Point;
