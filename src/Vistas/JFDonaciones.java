@@ -3,6 +3,7 @@ package Vistas;
 import BaseDeDatos.Conexion;
 import Controlador.Gestora;
 import Controlador.Ingeniero;
+import com.sun.corba.se.impl.protocol.giopmsgheaders.LocateReplyMessage;
 import java.awt.Color;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -1128,6 +1129,7 @@ public class JFDonaciones extends javax.swing.JFrame implements Runnable {
                 fecha = datos.get(4).toString();
                 estado = datos.get(5).toString();
                 txtBIdentificDon.setText("");
+                if(estado.equalsIgnoreCase("Activo")){
                 if (Ingeniero.Edad(fecha)) {
                     sql = "Select NombrePadecimiento from padecimientos where IDPadecimiento  = (Select "
                             + "IDPadecimiento from PadecimientosDonadores where IDDonador = (Select IDDonador from "
@@ -1159,6 +1161,19 @@ public class JFDonaciones extends javax.swing.JFrame implements Runnable {
                     btnConfimarDo.setEnabled(false);
                     txtCantidadS.setEnabled(false);
                 }
+                }else{
+                int op = JOptionPane.showConfirmDialog(null, "desea activar su cuenta","Cuenta Inactiva",
+                        JOptionPane.YES_NO_OPTION);
+                if(op == JOptionPane.YES_OPTION){
+                    String sql1 = "UPDATE IGNORE donadores SET\n"
+                        + "Estado = 'Activo' where Identificacion  = '"+datos.get(2).toString()+"'";
+                    PreparedStatement pps1 = cn.prepareStatement(sql1);
+                    pps1.execute();
+                    JOptionPane.showMessageDialog(null, "Se ha activado su cuenta","Activada",JOptionPane.INFORMATION_MESSAGE);
+                }else{
+  
+                }
+                }
             } else {
                 JOptionPane.showMessageDialog(null, "No"
                         + " existe donador", "Error", JOptionPane.INFORMATION_MESSAGE);
@@ -1171,7 +1186,7 @@ public class JFDonaciones extends javax.swing.JFrame implements Runnable {
                 txtBIdentificDon.setText("");
 
             }
-
+            
         } catch (SQLException e) {
             JOptionPane.showMessageDialog(null, "Error", "Error", JOptionPane.ERROR_MESSAGE);
         }
@@ -1201,23 +1216,30 @@ public class JFDonaciones extends javax.swing.JFrame implements Runnable {
             fecha = day + "/" + month + "/" + year;
         }
         if (Integer.parseInt(Cantidad) <= 4500) {
-            try {
-                if (gestora.UltimaDon(Iden)) {
-                    PreparedStatement pps = cn.prepareStatement("INSERT INTO donaciones (IDDonador, Fecha, cantidad, TipoSangre) VALUES (("
-                            + "Select IDDonador from donadores where Identificacion = ?), ?, ?, ?);");
-                    pps.setString(1, Iden);
-                    pps.setString(2, fecha);
-                    pps.setString(3, Cantidad);
-                    pps.setString(4, TipoSangre);
-                    pps.execute();
-                    JOptionPane.showMessageDialog(null, "Se a completado la donación", "Donación", JOptionPane.DEFAULT_OPTION);
-                    limpiardonar();
-                } else {
-                    JOptionPane.showMessageDialog(null, "Su última donación fue hace 2 "
-                            + "meses no puede donar", "Error", JOptionPane.INFORMATION_MESSAGE);
-                    limpiardonar();
+                try {
+                    if (gestora.UltimaDon(Iden)) {
+                        int op = JOptionPane.showConfirmDialog(null, "Seguro desea donar sangre","Acepta Donar",
+                        JOptionPane.YES_NO_OPTION);
+                if(op == JOptionPane.YES_OPTION){
+                        PreparedStatement pps = cn.prepareStatement("INSERT INTO donaciones (IDDonador, Fecha, cantidad, TipoSangre) VALUES (("
+                                + "Select IDDonador from donadores where Identificacion = ?), ?, ?, ?);");
+                        pps.setString(1, Iden);
+                        pps.setString(2, fecha);
+                        pps.setString(3, Cantidad);
+                        pps.setString(4, TipoSangre);
+                        pps.execute();
+                        JOptionPane.showMessageDialog(null, "Se a completado la donación", "Donación", JOptionPane.DEFAULT_OPTION);
+                        limpiardonar();
+                }else{
+                limpiardonar();
                 }
-            } catch (SQLException e) {
+                    } else {
+                        JOptionPane.showMessageDialog(null, "Su última donación fue hace 2 "
+                                + "meses no puede donar", "Error", JOptionPane.INFORMATION_MESSAGE);
+                        limpiardonar();
+                    }
+                    
+            }catch (SQLException e) {
                 JOptionPane.showMessageDialog(null, "ERROR 404", "Error", JOptionPane.ERROR_MESSAGE);
             }
         } else {

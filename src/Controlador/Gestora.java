@@ -290,7 +290,7 @@ public class Gestora {
         Connection cn = cc.conexion();
         Statement st = null;
         ResultSet rs = null;
-        boolean bandera = false;
+        boolean bandera = true;
         java.util.Date date = new java.util.Date();
         Calendar cal = Calendar.getInstance();
         cal.setTime(date);
