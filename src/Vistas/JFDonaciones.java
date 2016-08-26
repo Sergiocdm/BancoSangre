@@ -47,6 +47,10 @@ public class JFDonaciones extends javax.swing.JFrame implements Runnable {
         lbApellidoDo.setVisible(false);
         lbIdenDo.setVisible(false);
         lbTPDo.setVisible(false);
+        lbNombreS.setVisible(false);
+        lbApellidoS.setVisible(false);
+        lbIdenS.setVisible(false);
+        lbTPS.setVisible(false);
         btnConfimarDo.setEnabled(false);
         txtCantidadS.setEnabled(false);
         setLocationRelativeTo(null);
@@ -65,6 +69,8 @@ public class JFDonaciones extends javax.swing.JFrame implements Runnable {
         jMenu1 = new javax.swing.JMenu();
         jMenu2 = new javax.swing.JMenu();
         jPopupMenu3 = new javax.swing.JPopupMenu();
+        jTextField1 = new javax.swing.JTextField();
+        jSpinField1 = new com.toedter.components.JSpinField();
         jPanel1 = new javax.swing.JPanel();
         jTabbedPane5 = new javax.swing.JTabbedPane();
         jPanel2 = new javax.swing.JPanel();
@@ -109,14 +115,14 @@ public class JFDonaciones extends javax.swing.JFrame implements Runnable {
         cmbBTS = new javax.swing.JComboBox();
         txtBNombre = new javax.swing.JTextField();
         txtBApellido = new javax.swing.JTextField();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        tbDatos = new javax.swing.JTable();
         jLabel21 = new javax.swing.JLabel();
         cmbBuscarPor = new javax.swing.JComboBox();
         btnBuscar = new javax.swing.JButton();
         txtBIdentific = new javax.swing.JFormattedTextField();
         btnModificar = new javax.swing.JButton();
         btnEliminar = new javax.swing.JButton();
+        jScrollPane4 = new javax.swing.JScrollPane();
+        tbDatos = new javax.swing.JTable();
         jPanel4 = new javax.swing.JPanel();
         jLabel22 = new javax.swing.JLabel();
         txtBIdentificDon = new javax.swing.JFormattedTextField();
@@ -134,6 +140,17 @@ public class JFDonaciones extends javax.swing.JFrame implements Runnable {
         jPanel5 = new javax.swing.JPanel();
         jScrollPane2 = new javax.swing.JScrollPane();
         tbClientes = new javax.swing.JTable();
+        jPanel6 = new javax.swing.JPanel();
+        jLabel24 = new javax.swing.JLabel();
+        txtBIdentificS = new javax.swing.JFormattedTextField();
+        btnBuscar2 = new javax.swing.JButton();
+        lbNombreS = new javax.swing.JLabel();
+        lbApellidoS = new javax.swing.JLabel();
+        lbIdenS = new javax.swing.JLabel();
+        lbTPS = new javax.swing.JLabel();
+        jSeparator2 = new javax.swing.JSeparator();
+        jScrollPane3 = new javax.swing.JScrollPane();
+        tbSolicitud = new javax.swing.JTable();
         lblHora = new javax.swing.JLabel();
 
         jMenu1.setText("File");
@@ -145,7 +162,9 @@ public class JFDonaciones extends javax.swing.JFrame implements Runnable {
         jPopupMenu3.setComponentPopupMenu(jPopupMenu3);
         jPopupMenu3.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        jTextField1.setText("jTextField1");
+
+        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         jPanel2.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         jPanel2.setOpaque(false);
@@ -285,7 +304,7 @@ public class JFDonaciones extends javax.swing.JFrame implements Runnable {
                         .addComponent(JCalendar, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 67, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 87, Short.MAX_VALUE)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addGroup(jPanel2Layout.createSequentialGroup()
                                 .addComponent(jLabel13)
@@ -432,24 +451,6 @@ public class JFDonaciones extends javax.swing.JFrame implements Runnable {
 
         cmbBTS.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Tipo de Sangre", "A+", "A-", "B+", "B-", "O+", "O-", "AB+", "AB-" }));
 
-        tbDatos = new javax.swing.JTable(){
-            public boolean isCellEditable(int rowIndex, int colIndex){
-                return false;
-            }
-        };
-        tbDatos.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-
-            },
-            new String [] {
-
-            }
-        ));
-        tbDatos.setDragEnabled(true);
-        tbDatos.setFocusable(false);
-        tbDatos.getTableHeader().setReorderingAllowed(false);
-        jScrollPane1.setViewportView(tbDatos);
-
         jLabel21.setText("Buscar Por:");
 
         cmbBuscarPor.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Buscar Por", "Nombre", "Apellido", "Identificacion", "Tipo de Sangre" }));
@@ -486,6 +487,22 @@ public class JFDonaciones extends javax.swing.JFrame implements Runnable {
             }
         });
 
+        tbDatos = new javax.swing.JTable(){
+            public boolean isCellEditable(int rowIndex, int colIndex){
+                return false;
+            }
+        };
+        tbDatos.getTableHeader().setReorderingAllowed(false);
+        tbDatos.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+
+            }
+        ));
+        jScrollPane4.setViewportView(tbDatos);
+
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
         jPanel3Layout.setHorizontalGroup(
@@ -515,11 +532,11 @@ public class JFDonaciones extends javax.swing.JFrame implements Runnable {
                         .addComponent(jLabel20)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(cmbBTS, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 2, Short.MAX_VALUE))
+                        .addGap(0, 22, Short.MAX_VALUE))
                     .addGroup(jPanel3Layout.createSequentialGroup()
                         .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jScrollPane1)
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
+                            .addComponent(jScrollPane4)
+                            .addGroup(jPanel3Layout.createSequentialGroup()
                                 .addComponent(btnBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(69, 69, 69)
                                 .addComponent(btnModificar, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -530,7 +547,7 @@ public class JFDonaciones extends javax.swing.JFrame implements Runnable {
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap(20, Short.MAX_VALUE)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel21)
                     .addComponent(cmbBuscarPor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -545,8 +562,8 @@ public class JFDonaciones extends javax.swing.JFrame implements Runnable {
                         .addComponent(jLabel20)
                         .addComponent(cmbBTS, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(txtBIdentific, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(18, 18, 18)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 324, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 331, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnModificar, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -584,12 +601,6 @@ public class JFDonaciones extends javax.swing.JFrame implements Runnable {
 
         jLabel27.setText("Cantidad de Sangre a Donar: ");
 
-        txtCantidadS.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyTyped(java.awt.event.KeyEvent evt) {
-                txtCantidadSKeyTyped(evt);
-            }
-        });
-
         jLabel28.setText("Recuerde que para donar sangre tiene que ser mayor de edad y contar con un peso superior a los 50 kg");
 
         btnConfimarDo.setText("Confirmar");
@@ -623,7 +634,7 @@ public class JFDonaciones extends javax.swing.JFrame implements Runnable {
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
                         .addComponent(lbIdenDo)
                         .addGap(35, 35, 35)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 103, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 123, Short.MAX_VALUE)
                 .addComponent(lbTPDo)
                 .addGap(44, 44, 44))
             .addComponent(jSeparator1)
@@ -670,6 +681,12 @@ public class JFDonaciones extends javax.swing.JFrame implements Runnable {
 
         jTabbedPane5.addTab("Donar Sangre", jPanel4);
 
+        tbClientes = new javax.swing.JTable(){
+            public boolean isCellEditable(int rowIndex, int colIndex){
+                return false;
+            }
+        };
+        tbClientes.getTableHeader().setReorderingAllowed(false);
         tbClientes.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
@@ -686,18 +703,108 @@ public class JFDonaciones extends javax.swing.JFrame implements Runnable {
             jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel5Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 662, Short.MAX_VALUE)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 682, Short.MAX_VALUE)
                 .addContainerGap())
         );
         jPanel5Layout.setVerticalGroup(
             jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel5Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 441, Short.MAX_VALUE)
-                .addContainerGap())
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 429, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(23, Short.MAX_VALUE))
         );
 
         jTabbedPane5.addTab("Clientes", jPanel5);
+
+        jLabel24.setText("Identificación:");
+
+        try {
+            txtBIdentificS.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("#-####-####")));
+        } catch (java.text.ParseException ex) {
+            ex.printStackTrace();
+        }
+        txtBIdentificS.setDragEnabled(true);
+        txtBIdentificS.setFocusLostBehavior(javax.swing.JFormattedTextField.COMMIT);
+
+        btnBuscar2.setText("Buscar");
+        btnBuscar2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnBuscar2ActionPerformed(evt);
+            }
+        });
+
+        lbNombreS.setText("Nombre ");
+
+        lbApellidoS.setText("Apellido");
+
+        lbIdenS.setText("Identificacion");
+
+        lbTPS.setText("TipoSangre");
+
+        tbSolicitud = new javax.swing.JTable(){
+            public boolean isCellEditable(int rowIndex, int colIndex){
+                return false;
+            }
+        };
+        tbSolicitud.getTableHeader().setReorderingAllowed(false);
+        tbSolicitud.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+
+            }
+        ));
+        tbSolicitud.setFocusable(false);
+        jScrollPane3.setViewportView(tbSolicitud);
+
+        javax.swing.GroupLayout jPanel6Layout = new javax.swing.GroupLayout(jPanel6);
+        jPanel6.setLayout(jPanel6Layout);
+        jPanel6Layout.setHorizontalGroup(
+            jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jSeparator2, javax.swing.GroupLayout.Alignment.TRAILING)
+            .addGroup(jPanel6Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane3)
+                    .addGroup(jPanel6Layout.createSequentialGroup()
+                        .addComponent(jLabel24)
+                        .addGap(18, 18, 18)
+                        .addComponent(txtBIdentificS, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(btnBuscar2, javax.swing.GroupLayout.PREFERRED_SIZE, 163, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel6Layout.createSequentialGroup()
+                        .addComponent(lbNombreS, javax.swing.GroupLayout.PREFERRED_SIZE, 68, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(118, 118, 118)
+                        .addComponent(lbApellidoS)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 201, Short.MAX_VALUE)
+                        .addComponent(lbIdenS)
+                        .addGap(140, 140, 140)
+                        .addComponent(lbTPS)))
+                .addContainerGap())
+        );
+        jPanel6Layout.setVerticalGroup(
+            jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel6Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel24)
+                    .addComponent(txtBIdentificS, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnBuscar2))
+                .addGap(18, 18, 18)
+                .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(lbNombreS)
+                    .addComponent(lbApellidoS)
+                    .addComponent(lbIdenS)
+                    .addComponent(lbTPS))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jSeparator2, javax.swing.GroupLayout.PREFERRED_SIZE, 2, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 367, Short.MAX_VALUE)
+                .addContainerGap())
+        );
+
+        jTabbedPane5.addTab("Solicitud de Donadores", jPanel6);
 
         lblHora.setText("jLabel4");
 
@@ -709,10 +816,7 @@ public class JFDonaciones extends javax.swing.JFrame implements Runnable {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(lblHora, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(20, 20, 20))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jTabbedPane5)
-                .addContainerGap())
+            .addComponent(jTabbedPane5)
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -1135,44 +1239,44 @@ public class JFDonaciones extends javax.swing.JFrame implements Runnable {
                 fecha = datos.get(4).toString();
                 estado = datos.get(5).toString();
                 txtBIdentificDon.setText("");
-                if(estado.equalsIgnoreCase("Activo")){
-                if (Ingeniero.Edad(fecha)) {
-                    sql = "Select NombrePadecimiento from padecimientos where IDPadecimiento  = (Select "
-                            + "IDPadecimiento from PadecimientosDonadores where IDDonador = (Select IDDonador from "
-                            + "bancosangre.donadores where Identificacion = '" + Identificacion + "'))";
-                    st = cn.createStatement();
-                    rs = st.executeQuery(sql);
-                    while (rs.next()) {
-                        Padecimiento = rs.getString(1);
-                    }
-                    if (Padecimiento.equalsIgnoreCase("Nada")) {
+                if (estado.equalsIgnoreCase("Activo")) {
+                    if (Ingeniero.Edad(fecha)) {
+                        sql = "Select NombrePadecimiento from padecimientos where IDPadecimiento  = (Select "
+                                + "IDPadecimiento from PadecimientosDonadores where IDDonador = (Select IDDonador from "
+                                + "bancosangre.donadores where Identificacion = '" + Identificacion + "'))";
+                        st = cn.createStatement();
+                        rs = st.executeQuery(sql);
+                        while (rs.next()) {
+                            Padecimiento = rs.getString(1);
+                        }
+                        if (Padecimiento.equalsIgnoreCase("Nada")) {
                             btnConfimarDo.setEnabled(true);
                             txtCantidadS.setEnabled(true);
+                        } else {
+                            JOptionPane.showMessageDialog(null, "Tiene una enfermedad con la cual "
+                                    + "no puede donar", "Error", JOptionPane.INFORMATION_MESSAGE);
+                            btnConfimarDo.setEnabled(false);
+                            txtCantidadS.setEnabled(false);
+                        }
                     } else {
-                        JOptionPane.showMessageDialog(null, "Tiene una enfermedad con la cual "
+                        JOptionPane.showMessageDialog(null, "Es menor de edad "
                                 + "no puede donar", "Error", JOptionPane.INFORMATION_MESSAGE);
                         btnConfimarDo.setEnabled(false);
                         txtCantidadS.setEnabled(false);
                     }
                 } else {
-                    JOptionPane.showMessageDialog(null, "Es menor de edad "
-                            + "no puede donar", "Error", JOptionPane.INFORMATION_MESSAGE);
-                    btnConfimarDo.setEnabled(false);
-                    txtCantidadS.setEnabled(false);
-                }
-                }else{
-                int op = JOptionPane.showConfirmDialog(null, "desea activar su cuenta","Cuenta Inactiva",
-                        JOptionPane.YES_NO_OPTION);
-                if(op == JOptionPane.YES_OPTION){
-                    String sql1 = "UPDATE IGNORE donadores SET\n"
-                        + "Estado = 'Activo' where Identificacion  = '"+datos.get(2).toString()+"'";
-                    PreparedStatement pps1 = cn.prepareStatement(sql1);
-                    pps1.execute();
-                    JOptionPane.showMessageDialog(null, "Se ha activado su cuenta","Activada",JOptionPane.INFORMATION_MESSAGE);
-                    limpiardonar();
-                }else{
-  
-                }
+                    int op = JOptionPane.showConfirmDialog(null, "desea activar su cuenta", "Cuenta Inactiva",
+                            JOptionPane.YES_NO_OPTION);
+                    if (op == JOptionPane.YES_OPTION) {
+                        String sql1 = "UPDATE IGNORE donadores SET\n"
+                                + "Estado = 'Activo' where Identificacion  = '" + datos.get(2).toString() + "'";
+                        PreparedStatement pps1 = cn.prepareStatement(sql1);
+                        pps1.execute();
+                        JOptionPane.showMessageDialog(null, "Se ha activado su cuenta", "Activada", JOptionPane.INFORMATION_MESSAGE);
+                        limpiardonar();
+                    } else {
+
+                    }
                 }
             } else {
                 JOptionPane.showMessageDialog(null, "No"
@@ -1186,7 +1290,7 @@ public class JFDonaciones extends javax.swing.JFrame implements Runnable {
                 txtBIdentificDon.setText("");
 
             }
-            
+
         } catch (SQLException e) {
             JOptionPane.showMessageDialog(null, "Error", "Error", JOptionPane.ERROR_MESSAGE);
         }
@@ -1215,50 +1319,176 @@ public class JFDonaciones extends javax.swing.JFrame implements Runnable {
         } else {
             fecha = day + "/" + month + "/" + year;
         }
-        if(txtCantidadS.getText().trim().equals("")){
-            JOptionPane.showMessageDialog(null, "No hay una cantidad de sangre","Error",JOptionPane.INFORMATION_MESSAGE);
-        }else{
-        if (Integer.parseInt(Cantidad) <= 4500) {
+        if (txtCantidadS.getText().trim().equals("")) {
+            JOptionPane.showMessageDialog(null, "No hay una cantidad de sangre", "Error", JOptionPane.INFORMATION_MESSAGE);
+        } else {
+            if (Integer.parseInt(Cantidad) <= 4500) {
                 try {
                     if (gestora.UltimaDon(Iden)) {
-                        int op = JOptionPane.showConfirmDialog(null, "Seguro desea donar sangre","Acepta Donar",
-                        JOptionPane.YES_NO_OPTION);
-                if(op == JOptionPane.YES_OPTION){
-                        PreparedStatement pps = cn.prepareStatement("INSERT INTO donaciones (IDDonador, Fecha, cantidad, TipoSangre) VALUES (("
-                                + "Select IDDonador from donadores where Identificacion = ?), ?, ?, ?);");
-                        pps.setString(1, Iden);
-                        pps.setString(2, fecha);
-                        pps.setString(3, Cantidad);
-                        pps.setString(4, TipoSangre);
-                        pps.execute();
-                        JOptionPane.showMessageDialog(null, "Se a completado la donación", "Donación", JOptionPane.DEFAULT_OPTION);
-                        limpiardonar();
-                }else{
-                limpiardonar();
-                }
+                        int op = JOptionPane.showConfirmDialog(null, "Seguro desea donar sangre", "Acepta Donar",
+                                JOptionPane.YES_NO_OPTION);
+                        if (op == JOptionPane.YES_OPTION) {
+                            PreparedStatement pps = cn.prepareStatement("INSERT INTO donaciones (IDDonador, Fecha, cantidad, TipoSangre) VALUES (("
+                                    + "Select IDDonador from donadores where Identificacion = ?), ?, ?, ?);");
+                            pps.setString(1, Iden);
+                            pps.setString(2, fecha);
+                            pps.setString(3, Cantidad);
+                            pps.setString(4, TipoSangre);
+                            pps.execute();
+                            JOptionPane.showMessageDialog(null, "Se a completado la donación", "Donación", JOptionPane.DEFAULT_OPTION);
+                            limpiardonar();
+                        } else {
+                            limpiardonar();
+                        }
                     } else {
                         JOptionPane.showMessageDialog(null, "Su última donación fue hace 2 "
                                 + "meses no puede donar", "Error", JOptionPane.INFORMATION_MESSAGE);
                         limpiardonar();
                     }
-                    
-            }catch (SQLException e) {
-                JOptionPane.showMessageDialog(null, "ERROR 404", "Error", JOptionPane.ERROR_MESSAGE);
+
+                } catch (SQLException e) {
+                    JOptionPane.showMessageDialog(null, "ERROR 404", "Error", JOptionPane.ERROR_MESSAGE);
+                }
+            } else {
+                JOptionPane.showMessageDialog(null, "No puede donar más de 4500 ml de sangre");
             }
-        } else {
-            JOptionPane.showMessageDialog(null, "No puede donar más de 4500 ml de sangre");
-        }
         }
         txtCantidadS.setText("");
     }//GEN-LAST:event_btnConfimarDoActionPerformed
 
-    private void txtCantidadSKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtCantidadSKeyTyped
-         char c=evt.getKeyChar(); 
-          if(Character.isLetter(c)) { 
-              getToolkit().beep(); 
-              evt.consume(); 
-          } 
-    }//GEN-LAST:event_txtCantidadSKeyTyped
+    private void btnBuscar2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscar2ActionPerformed
+        String Identificacion = txtBIdentificS.getText();
+        boolean flag = false;
+        String sql = "Select Nombre, Apellido1, Identificacion, TipoDeSangre from "
+                + "bancosangre.donadores where Identificacion = '" + Identificacion + "'";
+        ArrayList datos = new ArrayList();
+        Statement st;
+        try {
+            st = cn.createStatement();
+            ResultSet rs = st.executeQuery(sql);
+            while (rs.next()) {
+                if (rs.getString("Identificacion").equals(Identificacion)) {
+                    datos.add(rs.getString(1));
+                    datos.add(rs.getString(2));
+                    datos.add(rs.getString(3));
+                    datos.add(rs.getString(4));
+                    flag = true;
+                    break;
+                }
+            }
+            if (flag) {
+                lbNombreDo.setVisible(true);
+                lbApellidoDo.setVisible(true);
+                lbIdenDo.setVisible(true);
+                lbTPDo.setVisible(true);
+                lbNombreDo.setText(datos.get(0).toString());
+                lbApellidoDo.setText(datos.get(1).toString());
+                lbIdenDo.setText(datos.get(2).toString());
+                lbTPDo.setText(datos.get(3).toString());
+                txtBIdentificDon.setText("");
+                DefaultTableModel modelo1 = new DefaultTableModel();
+                modelo1.addColumn("ID");
+                modelo1.addColumn("Nombre");
+                modelo1.addColumn("Apellido");
+                modelo1.addColumn("Fecha");
+                modelo1.addColumn("N°ID");
+                modelo1.addColumn("TipoS");
+                modelo1.addColumn("Telefono");
+                modelo1.addColumn("Correo");
+                tbSolicitud.setModel(modelo1);
+
+                switch (lbTPDo.getText()) {
+                    case "A+":
+                        sql = "SELECT IDDonador, Nombre, Apellido1, FechaNacimiento, Identificacion, TipoDeSangre"
+                                + ", Telefono, Correo FROM bancosangre.donadores where Identificacion <> '"+ lbIdenDo.getText()+ "'\n"
+                                + "and TipoDeSangre = 'A+'\n"
+                                + "or TipoDeSangre ='A-' or TipoDeSangre = 'O+' or TipoDeSangre = 'O-';";
+                        break;
+                    case "A-":
+                        sql = "SELECT IDDonador, Nombre, Apellido1, FechaNacimiento, Identificacion, TipoDeSangre"
+                                + ", Telefono, Correo FROM bancosangre.donadores where Identificacion <> '"+ lbIdenDo.getText()+ "' "
+                                + "\nTipoDeSangre ='A-' "
+                                + "or TipoDeSangre = 'O-';";
+                        break;
+                    case "B+":
+                        sql = "SELECT IDDonador, Nombre, Apellido1, FechaNacimiento, Identificacion, TipoDeSangre"
+                                + ", Telefono, Correo FROM bancosangre.donadores where Identificacion <> '"+ lbIdenDo.getText()+ "'"
+                                + "\n TipoDeSangre = 'B+'\n"
+                                + "or TipoDeSangre ='B-' or TipoDeSangre = 'O+' or TipoDeSangre = 'O-';";
+                        break;
+                    case "B-":
+                        sql = "SELECT IDDonador, Nombre, Apellido1, FechaNacimiento, Identificacion, TipoDeSangre"
+                                + ", Telefono, Correo FROM bancosangre.donadores where Identificacion <> '"+ lbIdenDo.getText()+ "'"
+                                + "\n TipoDeSangre ='B-' "
+                                + "or TipoDeSangre = 'O-';";
+                        break;
+                    case "AB+":
+                        sql = "SELECT IDDonador, Nombre, Apellido1, FechaNacimiento, Identificacion, TipoDeSangre"
+                                + ", Telefono, Correo FROM bancosangre.donadores where  Identificacion <> '"+ lbIdenDo.getText()+ "'";
+                        break;
+                    case "AB-":
+                        sql = "SELECT IDDonador, Nombre, Apellido1, FechaNacimiento, Identificacion, TipoDeSangre"
+                                + ", Telefono, Correo FROM bancosangre.donadores where Identificacion <> '"+ lbIdenDo.getText()+ "'"
+                                + " TipoDeSangre = 'AB-'\n"
+                                + "or TipoDeSangre ='B-' or TipoDeSangre = 'A-' or TipoDeSangre = 'O-';";
+                        break;
+                    case "O+":
+                        sql = "SELECT IDDonador, Nombre, Apellido1, FechaNacimiento, Identificacion, TipoDeSangre"
+                                + ", Telefono, Correo FROM bancosangre.donadores where Identificacion <> '"+ lbIdenDo.getText()+ "'"
+                                + " TipoDeSangre ='O+' "
+                                + "or TipoDeSangre = 'O-';";
+                        break;
+                    case "O-":
+                        sql = "SELECT IDDonador, Nombre, Apellido1, FechaNacimiento, Identificacion, TipoDeSangre"
+                                + ", Telefono, Correo FROM bancosangre.donadores where Identificacion <> '"+ lbIdenDo.getText()+ "'"
+                                + " TipoDeSangre = 'O-';";
+                        break;
+                    default:
+                        break;
+
+                }
+                String datos1[] = new String[8];
+                st = cn.createStatement();
+                rs = st.executeQuery(sql);
+                while (rs.next()) {
+                    String ID = rs.getString(1);
+                    datos1[0] = rs.getString(1);
+                    datos1[1] = rs.getString(2);
+                    datos1[2] = rs.getString(3);
+                    datos1[3] = rs.getString(4);
+                    datos1[4] = rs.getString(5);
+                    datos1[5] = rs.getString(6);
+                    datos1[6] = rs.getString(7);
+                    datos1[7] = rs.getString(8);
+                    Statement st1 = cn.createStatement();
+                    ResultSet rs1 = st1.executeQuery("Select IDPadecimiento from padecimientosdonadores "
+                            + "where IDDonador ='" + ID + "'");
+                    while (rs1.next()) {
+                        int IDP = rs1.getInt(1);
+                        if (IDP == 1) {
+                            modelo1.addRow(datos1);
+                        }
+                    }
+                }
+                tbSolicitud.setModel(modelo1);
+            } else {
+                JOptionPane.showMessageDialog(null, "No"
+                        + " existe donador", "Error", JOptionPane.INFORMATION_MESSAGE);
+                lbNombreDo.setVisible(false);
+                lbApellidoDo.setVisible(false);
+                lbIdenDo.setVisible(false);
+                lbTPDo.setVisible(false);
+                btnConfimarDo.setEnabled(false);
+                txtCantidadS.setEnabled(false);
+                txtBIdentificDon.setText("");
+
+            }
+
+        } catch (SQLException e) {
+            JOptionPane.showMessageDialog(null, "Error", "Error", JOptionPane.ERROR_MESSAGE);
+        }
+
+    }//GEN-LAST:event_btnBuscar2ActionPerformed
     boolean bandera = false;
 
     public void run() {
@@ -1383,6 +1613,7 @@ public class JFDonaciones extends javax.swing.JFrame implements Runnable {
     private com.toedter.calendar.JDateChooser JCalendar;
     private javax.swing.JButton btnBuscar;
     private javax.swing.JButton btnBuscar1;
+    private javax.swing.JButton btnBuscar2;
     private javax.swing.JButton btnConfimarDo;
     private javax.swing.JButton btnEliminar;
     private javax.swing.JButton btnModificar;
@@ -1413,6 +1644,7 @@ public class JFDonaciones extends javax.swing.JFrame implements Runnable {
     private javax.swing.JLabel jLabel21;
     private javax.swing.JLabel jLabel22;
     private javax.swing.JLabel jLabel23;
+    private javax.swing.JLabel jLabel24;
     private javax.swing.JLabel jLabel27;
     private javax.swing.JLabel jLabel28;
     private javax.swing.JLabel jLabel3;
@@ -1430,24 +1662,35 @@ public class JFDonaciones extends javax.swing.JFrame implements Runnable {
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
     private javax.swing.JPanel jPanel5;
+    private javax.swing.JPanel jPanel6;
     private javax.swing.JPopupMenu jPopupMenu3;
-    private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JScrollPane jScrollPane3;
+    private javax.swing.JScrollPane jScrollPane4;
     private javax.swing.JSeparator jSeparator1;
+    private javax.swing.JSeparator jSeparator2;
+    private com.toedter.components.JSpinField jSpinField1;
     private javax.swing.JTabbedPane jTabbedPane5;
+    private javax.swing.JTextField jTextField1;
     private javax.swing.JLabel lbApellidoDo;
+    private javax.swing.JLabel lbApellidoS;
     private javax.swing.JLabel lbIdenDo;
+    private javax.swing.JLabel lbIdenS;
     private javax.swing.JLabel lbNombreDo;
+    private javax.swing.JLabel lbNombreS;
     private javax.swing.JLabel lbTPDo;
+    private javax.swing.JLabel lbTPS;
     private javax.swing.JLabel lblHora;
     private javax.swing.JLabel lblMensaje;
     private javax.swing.JTable tbClientes;
     public static javax.swing.JTable tbDatos;
+    private javax.swing.JTable tbSolicitud;
     private javax.swing.JTextField txtApellido1;
     private javax.swing.JTextField txtApellido2;
     private javax.swing.JTextField txtBApellido;
     private javax.swing.JFormattedTextField txtBIdentific;
     private javax.swing.JFormattedTextField txtBIdentificDon;
+    private javax.swing.JFormattedTextField txtBIdentificS;
     private javax.swing.JTextField txtBNombre;
     private javax.swing.JTextField txtCantidadS;
     private javax.swing.JTextField txtCorreo;
